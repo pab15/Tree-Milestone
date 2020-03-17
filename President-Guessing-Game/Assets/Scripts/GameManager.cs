@@ -15,6 +15,6 @@ public class GameManager : MonoBehaviour
         head.noNode.yesNode.noNode = new PeopleNode("Donald Trump");
         GameTree presidentTree = new GameTree(head);
         presidentTree.WritePreOrderTraversal("test");*/
-        GameTree gameTree = Loader.LoadTreeFile("test");
+        GameTree gameTree = new GameTree("test");
     }
 }
