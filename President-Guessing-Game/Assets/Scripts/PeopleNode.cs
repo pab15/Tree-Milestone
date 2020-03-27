@@ -8,6 +8,7 @@ public class PeopleNode
     public string content { get; set; }
     public PeopleNode yesNode { get; set; }
     public PeopleNode noNode { get; set; }
+
     public bool isLeafNode
     {
         get
@@ -15,10 +16,28 @@ public class PeopleNode
             return yesNode == null && noNode == null;
         }
     }
+
+    public bool noLeftNode
+    {
+        get
+        {
+            return (yesNode == null);
+        }
+    }
+
+    public bool noRightNode
+    {
+        get
+        {
+            return (noNode == null);
+        }
+    }
+
     public PeopleNode()
     {
         // empty constructor
     }
+
     public PeopleNode(string nodecontent)
     {
         content = nodecontent;
