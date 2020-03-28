@@ -17,22 +17,6 @@ public class PeopleNode
         }
     }
 
-    public bool noLeftNode
-    {
-        get
-        {
-            return (yesNode == null);
-        }
-    }
-
-    public bool noRightNode
-    {
-        get
-        {
-            return (noNode == null);
-        }
-    }
-
     public PeopleNode()
     {
         // empty constructor
@@ -53,5 +37,19 @@ public class PeopleNode
     public PeopleNode MoveRight()
     {
         return noNode;
+    }
+
+    public string AskQuestion()
+    {
+        string return_string = "";
+        if (isLeafNode == true)
+        {
+            return_string = "Is the person you were thinking of " + content + "?";
+        }
+        else
+        {
+            return content;
+        }
+        return return_string;
     }
 }

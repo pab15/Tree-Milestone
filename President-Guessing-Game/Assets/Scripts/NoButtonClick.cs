@@ -6,19 +6,22 @@ public class NoButtonClick : MonoBehaviour
 {
     public void MoveRight()
     {
-        if (CreateGameManager.current.noRightNode == true)
+        if (CreateGameManager.current.isLeafNode == true)
         {
-            CreateGameManager.questionBox.SetActive(true);
-            CreateGameManager.questionButton.SetActive(true);
-            CreateGameManager.questionTextBox.SetActive(false);
+            CreateGameManager.nameField.SetActive(true);
+            CreateGameManager.submitName.SetActive(true);
+            CreateGameManager.promptTextBox.SetActive(true);
             CreateGameManager.yesButton.SetActive(false);
             CreateGameManager.noButton.SetActive(false);
-            CreateGameManager.movedRight = true;
+            CreateGameManager.promptText.text = "What person were you thinking of?";
+            CreateGameManager.questionTextBox.SetActive(false);
         }
         else
         {
+            CreateGameManager.parent = CreateGameManager.current;
             CreateGameManager.current = CreateGameManager.current.MoveRight();
-            CreateGameManager.questionText.text = CreateGameManager.current.content;
+            CreateGameManager.questionText.text = CreateGameManager.current.AskQuestion();
+            CreateGameManager.prevMoveRight = true;
         }
     }
 }

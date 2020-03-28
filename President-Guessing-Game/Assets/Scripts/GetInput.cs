@@ -11,44 +11,24 @@ public class GetInput : MonoBehaviour
     public void CreateNode()
     {
         questionAnswer = inputField.GetComponent<Text>().text;
-        if (CreateGameManager.isRoot == true)
+        if (CreateGameManager.started == true)
         {
-            CreateGameManager.current = new PeopleNode(questionAnswer);
-            CreateGameManager.isRoot = false;
+            CreateGameManager.gameTree.root = new PeopleNode(questionAnswer);
+            CreateGameManager.parent = CreateGameManager.gameTree.root;
+            CreateGameManager.promptText.text = "Is the answer for " + CreateGameManager.newPerson + " yes or no?";
             CreateGameManager.questionBox.SetActive(false);
             CreateGameManager.questionButton.SetActive(false);
-            CreateGameManager.questionTextBox.SetActive(true);
-            CreateGameManager.questionText.text = CreateGameManager.current.content;
-            CreateGameManager.yesButton.SetActive(true);
-            CreateGameManager.noButton.SetActive(true);
-            CreateGameManager.parent = CreateGameManager.current;
+            CreateGameManager.addYesButton.SetActive(true);
+            CreateGameManager.addNoButton.SetActive(true);
         }
         else
         {
-            if (CreateGameManager.movedLeft == true)
-            {
-                CreateGameManager.current.yesNode = new PeopleNode(questionAnswer);
-                CreateGameManager.questionBox.SetActive(false);
-                CreateGameManager.questionButton.SetActive(false);
-                CreateGameManager.questionTextBox.SetActive(true);
-                CreateGameManager.questionText.text = CreateGameManager.parent.content;
-                CreateGameManager.yesButton.SetActive(true);
-                CreateGameManager.noButton.SetActive(true);
-                CreateGameManager.current = CreateGameManager.parent;
-                CreateGameManager.movedLeft = false;
-            }
-            else if (CreateGameManager.movedRight == true)
-            {
-                CreateGameManager.current.noNode = new PeopleNode(questionAnswer);
-                CreateGameManager.questionBox.SetActive(false);
-                CreateGameManager.questionButton.SetActive(false);
-                CreateGameManager.questionTextBox.SetActive(true);
-                CreateGameManager.questionText.text = CreateGameManager.parent.content;
-                CreateGameManager.yesButton.SetActive(true);
-                CreateGameManager.noButton.SetActive(true);
-                CreateGameManager.current = CreateGameManager.parent;
-                CreateGameManager.movedRight = false;
-            }
+            CreateGameManager.savedNode = new PeopleNode(questionAnswer);
+            CreateGameManager.promptText.text = "Is the answer for " + CreateGameManager.newPerson + " yes or no?";
+            CreateGameManager.questionBox.SetActive(false);
+            CreateGameManager.questionButton.SetActive(false);
+            CreateGameManager.addYesButton.SetActive(true);
+            CreateGameManager.addNoButton.SetActive(true);
         }
     }
 }

@@ -6,19 +6,18 @@ public class YesButtonClick : MonoBehaviour
 {
     public void MoveLeft()
     {
-        if (CreateGameManager.current.noLeftNode == true)
+        if (CreateGameManager.current.isLeafNode == true)
         {
-            CreateGameManager.questionBox.SetActive(true);
-            CreateGameManager.questionButton.SetActive(true);
-            CreateGameManager.questionTextBox.SetActive(false);
-            CreateGameManager.yesButton.SetActive(false);
-            CreateGameManager.noButton.SetActive(false);
-            CreateGameManager.movedLeft = true;
+            CreateGameManager.questionText.text = "I win!";
+            CreateGameManager.resetButton.SetActive(true);
+            CreateGameManager.startOverButton.SetActive(true);
         }
         else
         {
+            CreateGameManager.parent = CreateGameManager.current;
             CreateGameManager.current = CreateGameManager.current.MoveLeft();
-            CreateGameManager.questionText.text = CreateGameManager.current.content;
+            CreateGameManager.questionText.text = CreateGameManager.current.AskQuestion();
+            CreateGameManager.prevMoveLeft = true;
         }
     }
 }
